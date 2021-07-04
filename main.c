@@ -2,38 +2,14 @@
   ******************************************************************************
   * @file    Templates/Src/main.c 
   * @author  MCD Application Team
-  * @brief   STM32F4xx HAL API Template project 
+  * @brief   Proyecto que  representa por pantalla el texto enviado a traves 
+	*					 del SPI lo que introduce el microcontrolador
   *
   * @note    modified by ARM
   *          The modifications allow to use this file as User Code Template
   *          within the Device Family Pack.
   ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
+  * 
   ******************************************************************************
   */
 
@@ -74,17 +50,7 @@ uint32_t HAL_GetTick (void) {
 
 #endif
 
-/** @addtogroup STM32F4xx_HAL_Examples
-  * @{
-  */
 
-/** @addtogroup Templates
-  * @{
-  */
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 uint8_t posicionL1=0;
 uint16_t posicionL2=256;
@@ -97,6 +63,7 @@ char L2[128];
 uint8_t recoger1;
 uint16_t recoger2;
 char lcd_text[2][20+1];
+
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void Error_Handler(void);
@@ -112,9 +79,9 @@ void wr_data(unsigned char data);
 void wr_cmd(unsigned char cmd);
 void LCD_reset(void);
 void copy_to_lcd(void);
-void escribir_frecuencia(float norte, float sur, float este, float oeste);
 void actualizar(char lcd_text[2][20+1]);
 void lcd_clean(void);
+void pant_neg (void);
 
 extern ARM_DRIVER_SPI Driver_SPI1;
 ARM_DRIVER_SPI* SPIdrv = &Driver_SPI1;
@@ -151,6 +118,7 @@ int main(void)
   sprintf (lcd_text[0], "FUNCIONA");
   sprintf (lcd_text[1], "POR FIN");
 	actualizar(lcd_text);
+	//pant_neg();
 #ifdef RTE_CMSIS_RTOS2
   /* Initialize CMSIS-RTOS2 */
   osKernelInitialize ();
@@ -172,16 +140,16 @@ int main(void)
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 
   *            System Clock source            = PLL (HSE)
-  *            SYSCLK(Hz)                     = 168000000
-  *            HCLK(Hz)                       = 168000000
-  *            AHB Prescaler                  = 1
+  *            SYSCLK(Hz)                     = 128409091
+  *            HCLK(Hz)                       = 16051136
+  *            AHB Prescaler                  = 8
   *            APB1 Prescaler                 = 4
-  *            APB2 Prescaler                 = 2
-  *            HSE Frequency(Hz)              = 8000000
-  *            PLL_M                          = 25
-  *            PLL_N                          = 336
+  *            APB2 Prescaler                 = 16
+  *            HSE Frequency(Hz)              = 25000000
+  *            PLL_M                          = 22
+  *            PLL_N                          = 226
   *            PLL_P                          = 2
-  *            PLL_Q                          = 7
+  *            PLL_Q                          = 2
   *            VDD(V)                         = 3.3
   *            Main regulator output voltage  = Scale1 mode
   *            Flash Latency(WS)              = 5
@@ -192,49 +160,42 @@ static void SystemClock_Config(void)
 {
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_OscInitTypeDef RCC_OscInitStruct;
-
-  /* Enable Power Control clock */
-  __HAL_RCC_PWR_CLK_ENABLE();
-
-  /* The voltage scaling allows optimizing the power consumption when the device is 
-     clocked below the maximum system frequency, to update the voltage scaling value 
-     regarding system frequency refer to product datasheet.  */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
+/** Configure the main internal regulator output voltage
+  */
+	__HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  
   /* Enable HSE Oscillator and activate PLL with HSE as source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 13;
-  RCC_OscInitStruct.PLL.PLLN = 165;
+  RCC_OscInitStruct.PLL.PLLM = 22;
+  RCC_OscInitStruct.PLL.PLLN = 226;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 2;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
   if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     /* Initialization Error */
     Error_Handler();
   }
+	 
+  
 
   /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
      clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV8;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;  
-  if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV16;  
+  if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     /* Initialization Error */
     Error_Handler();
   }
 
-  /* STM32F405x/407x/415x/417x Revision Z devices: prefetch is supported */
-  if (HAL_GetREVID() == 0x1001)
-  {
-    /* Enable the Flash prefetch */
-    __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
-  }
+
 }
 
 static void MX_GPIO_Init(void)
@@ -302,6 +263,49 @@ int EscribeLetra_L1 (uint8_t letra){
 	posicionL1 = posicionL1 + Arial12x12[comienzo];	// actualiza el valor de la dirección para que escriba el siguiente caracter (le suma el ancho del caracter)
 }
 	return 0;	
+}
+
+void pant_neg (void){
+	 int i;
+    wr_cmd(0x00);      // 4 bits de la parte baja de la dirección a 0
+    wr_cmd(0x10);      // 4 bits de la parte alta de la dirección a 0
+    wr_cmd(0xB0);      // Página 0
+    
+		HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_SET);	// Seleccionar A0 = 1;
+    for(i=0;i<128;i++){
+        wr_data(0xff);
+        }
+  
+     
+    wr_cmd(0x00);      // 4 bits de la parte baja de la dirección a 0
+    wr_cmd(0x10);      // 4 bits de la parte alta de la dirección a 0
+    wr_cmd(0xB1);      // Página 1
+    
+					
+    for(i=128;i<256;i++){
+        wr_data(0xff);
+        }
+    
+    wr_cmd(0x00);       
+    wr_cmd(0x10);      
+    wr_cmd(0xB2);      //Página 2
+				
+		
+    for(i=256;i<384;i++){
+        wr_data(0xff);
+        }
+    
+				
+		HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_SET);	// Seleccionar A0 = 1;
+    wr_cmd(0x00);       
+    wr_cmd(0x10);       
+    wr_cmd(0xB3);      // Pagina 3
+     
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14,GPIO_PIN_RESET);
+				
+    for(i=384;i<512;i++){
+        wr_data(0xff);
+        }
 }
 
 int EscribeLetra_L2 (uint16_t letra){
@@ -431,23 +435,6 @@ void copy_to_lcd(void){
 }
 
 
-/*void escribir_frecuencia(float norte, float sur, float este, float oeste){
-	posicionL1=0;
-	posicionL2=256;
-  int cadena1 = 0;
-	float cantidad=norte+sur+este+oeste;
-	cadena1=sprintf(L2,"%0.2f eur", cantidad);
-		for (j=0; j<cadena1;j++){
-		recoger2= (uint8_t)L2[j];
-		EscribeLetra_L2(recoger2);
-		}
-	sprintf(L1,"Cantidad");
-	for (j=0; j<strlen(L1);j++){
-		recoger1= (uint8_t)L1[j];
-		EscribeLetra_L1(recoger1);
-		}
-	copy_to_lcd();
-}*/
 
 void actualizar(char lcd_text[2][20+1]){
 		posicionL1=0;
