@@ -19,10 +19,8 @@
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armcc.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\mpu_armv7.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
-.\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h
-.\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h
@@ -31,11 +29,7 @@
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h
-.\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_i2c.h
-.\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_i2c_ex.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h
 .\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h
-.\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h
-.\objects\spi_stm32f4xx.o: C:\Users\User\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h
 .\objects\spi_stm32f4xx.o: .\RTE\Device\STM32F429ZITx\RTE_Device.h
