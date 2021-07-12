@@ -115,7 +115,6 @@ int main(void)
      */
 	GPIO_INIT();
 	LCD_reset();
-	lcd_clean();
 	//pixel(5,7,1);
 	
 	sprintf (text[0], "FUNCIONA");

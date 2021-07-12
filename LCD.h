@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "stm32f4xx_hal.h"
+#include "stm32f7xx_hal.h"
 
 void LCD_reset(void);
 void lcd_clean(void);

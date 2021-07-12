@@ -34,8 +34,8 @@ void wr_cmd(unsigned char cmd){
 	
 	ARM_SPI_STATUS stat;
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);	// Seleccionar CS = 0;
-  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);	// Seleccionar A0 = 1;
-  SPIdrv -> Send(&cmd,sizeof(cmd));		// Escribir un dato (data) 
+  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);	// Seleccionar A0 = 0;
+  SPIdrv -> Send(&cmd,sizeof(cmd));		// Escribir un comando (cmd) 
   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);	// Seleccionar CS = 1;
 	stat = SPIdrv->GetStatus ();
 	while(stat.busy){
@@ -54,17 +54,17 @@ void LCD_reset(void){
 	status = SPIdrv->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL1_CPHA1 | ARM_SPI_MSB_LSB | ARM_SPI_DATA_BITS(8), 1000000);
 	//status = SPIdrv->Control(ARM_SPI_CONTROL_SS, ARM_SPI_SS_INACTIVE);
 	
-	  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);    //A0 = 0
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET); 		//CS = 1
 
   /*Configure GPIO pin Output Level */
 	
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-	HAL_Delay(1);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-	HAL_Delay(5);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET); //RESET = 0
+	HAL_Delay(2);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);		//RESET = 1
+	HAL_Delay(20);
 		
 			wr_cmd(0xAE);
 			wr_cmd(0xA2);
@@ -77,7 +77,10 @@ void LCD_reset(void){
 			wr_cmd(0x81);
 			wr_cmd(0x17);
 			wr_cmd(0xA6);
-	
+		for(int i=0; i<512;i++){
+		buffer[i]=0;
+	}
+	copy_to_lcd();
 
 }
 
@@ -112,14 +115,13 @@ void copy_to_lcd(void){
         }
     
 				
-		HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_SET);	// Seleccionar A0 = 1;
     wr_cmd(0x00);       
     wr_cmd(0x10);       
     wr_cmd(0xB3);      // Pagina 3
      
-  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13,GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13,GPIO_PIN_SET);
 				
-	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14,GPIO_PIN_RESET);
+	//HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14,GPIO_PIN_RESET);
 				
     for(i=384;i<512;i++){
         wr_data(buffer[i]);
@@ -200,13 +202,12 @@ void GPIO_INIT(void){
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);
@@ -214,8 +215,8 @@ void GPIO_INIT(void){
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : GPIO_PIN_7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_7;
+  /*Configure GPIO pin : GPIO_PIN_6 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
