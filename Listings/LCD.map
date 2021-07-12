@@ -857,80 +857,80 @@ Image Symbol Table
     i.HAL_SYSTICK_Config                     0x0800161c   Section        0  stm32f7xx_hal_cortex.o(i.HAL_SYSTICK_Config)
     i.HardFault_Handler                      0x08001650   Section        0  stm32f7xx_it.o(i.HardFault_Handler)
     i.LCD_reset                              0x08001654   Section        0  lcd.o(i.LCD_reset)
-    i.MemManage_Handler                      0x08001728   Section        0  stm32f7xx_it.o(i.MemManage_Handler)
-    i.NMI_Handler                            0x0800172c   Section        0  stm32f7xx_it.o(i.NMI_Handler)
-    i.PendSV_Handler                         0x0800172e   Section        0  stm32f7xx_it.o(i.PendSV_Handler)
-    i.SPI1_Control                           0x08001730   Section        0  spi_stm32f7xx.o(i.SPI1_Control)
-    SPI1_Control                             0x08001731   Thumb Code    18  spi_stm32f7xx.o(i.SPI1_Control)
-    i.SPI1_GetDataCount                      0x08001748   Section        0  spi_stm32f7xx.o(i.SPI1_GetDataCount)
-    SPI1_GetDataCount                        0x08001749   Thumb Code    10  spi_stm32f7xx.o(i.SPI1_GetDataCount)
-    i.SPI1_GetStatus                         0x08001758   Section        0  spi_stm32f7xx.o(i.SPI1_GetStatus)
-    SPI1_GetStatus                           0x08001759   Thumb Code    12  spi_stm32f7xx.o(i.SPI1_GetStatus)
-    i.SPI1_IRQHandler                        0x08001768   Section        0  spi_stm32f7xx.o(i.SPI1_IRQHandler)
-    i.SPI1_Initialize                        0x08001778   Section        0  spi_stm32f7xx.o(i.SPI1_Initialize)
-    SPI1_Initialize                          0x08001779   Thumb Code    14  spi_stm32f7xx.o(i.SPI1_Initialize)
-    i.SPI1_PowerControl                      0x0800178c   Section        0  spi_stm32f7xx.o(i.SPI1_PowerControl)
-    SPI1_PowerControl                        0x0800178d   Thumb Code    14  spi_stm32f7xx.o(i.SPI1_PowerControl)
-    i.SPI1_Receive                           0x080017a0   Section        0  spi_stm32f7xx.o(i.SPI1_Receive)
-    SPI1_Receive                             0x080017a1   Thumb Code    18  spi_stm32f7xx.o(i.SPI1_Receive)
-    i.SPI1_Send                              0x080017b8   Section        0  spi_stm32f7xx.o(i.SPI1_Send)
-    SPI1_Send                                0x080017b9   Thumb Code    18  spi_stm32f7xx.o(i.SPI1_Send)
-    i.SPI1_Transfer                          0x080017d0   Section        0  spi_stm32f7xx.o(i.SPI1_Transfer)
-    SPI1_Transfer                            0x080017d1   Thumb Code    22  spi_stm32f7xx.o(i.SPI1_Transfer)
-    i.SPI1_Uninitialize                      0x080017ec   Section        0  spi_stm32f7xx.o(i.SPI1_Uninitialize)
-    SPI1_Uninitialize                        0x080017ed   Thumb Code    10  spi_stm32f7xx.o(i.SPI1_Uninitialize)
-    i.SPIX_GetCapabilities                   0x080017fc   Section        0  spi_stm32f7xx.o(i.SPIX_GetCapabilities)
-    SPIX_GetCapabilities                     0x080017fd   Thumb Code     6  spi_stm32f7xx.o(i.SPIX_GetCapabilities)
-    i.SPIX_GetVersion                        0x08001808   Section        0  spi_stm32f7xx.o(i.SPIX_GetVersion)
-    SPIX_GetVersion                          0x08001809   Thumb Code    10  spi_stm32f7xx.o(i.SPIX_GetVersion)
-    i.SPI_Control                            0x08001818   Section        0  spi_stm32f7xx.o(i.SPI_Control)
-    SPI_Control                              0x08001819   Thumb Code  1138  spi_stm32f7xx.o(i.SPI_Control)
-    i.SPI_GetDataCount                       0x08001c8a   Section        0  spi_stm32f7xx.o(i.SPI_GetDataCount)
-    SPI_GetDataCount                         0x08001c8b   Thumb Code     8  spi_stm32f7xx.o(i.SPI_GetDataCount)
-    i.SPI_GetStatus                          0x08001c92   Section        0  spi_stm32f7xx.o(i.SPI_GetStatus)
-    SPI_GetStatus                            0x08001c93   Thumb Code    44  spi_stm32f7xx.o(i.SPI_GetStatus)
-    i.SPI_IRQHandler                         0x08001cbe   Section        0  spi_stm32f7xx.o(i.SPI_IRQHandler)
-    SPI_IRQHandler                           0x08001cbf   Thumb Code   532  spi_stm32f7xx.o(i.SPI_IRQHandler)
-    i.SPI_Initialize                         0x08001ed2   Section        0  spi_stm32f7xx.o(i.SPI_Initialize)
-    SPI_Initialize                           0x08001ed3   Thumb Code   222  spi_stm32f7xx.o(i.SPI_Initialize)
-    i.SPI_PeripheralReset                    0x08001fb0   Section        0  spi_stm32f7xx.o(i.SPI_PeripheralReset)
-    SPI_PeripheralReset                      0x08001fb1   Thumb Code   262  spi_stm32f7xx.o(i.SPI_PeripheralReset)
-    i.SPI_PowerControl                       0x080020d4   Section        0  spi_stm32f7xx.o(i.SPI_PowerControl)
-    SPI_PowerControl                         0x080020d5   Thumb Code   608  spi_stm32f7xx.o(i.SPI_PowerControl)
-    i.SPI_Receive                            0x08002354   Section        0  spi_stm32f7xx.o(i.SPI_Receive)
-    SPI_Receive                              0x08002355   Thumb Code   148  spi_stm32f7xx.o(i.SPI_Receive)
-    i.SPI_Send                               0x080023e8   Section        0  spi_stm32f7xx.o(i.SPI_Send)
-    SPI_Send                                 0x080023e9   Thumb Code   148  spi_stm32f7xx.o(i.SPI_Send)
-    i.SPI_Transfer                           0x0800247c   Section        0  spi_stm32f7xx.o(i.SPI_Transfer)
-    SPI_Transfer                             0x0800247d   Thumb Code   112  spi_stm32f7xx.o(i.SPI_Transfer)
-    i.SPI_Uninitialize                       0x080024ec   Section        0  spi_stm32f7xx.o(i.SPI_Uninitialize)
-    SPI_Uninitialize                         0x080024ed   Thumb Code   102  spi_stm32f7xx.o(i.SPI_Uninitialize)
-    i.SVC_Handler                            0x08002552   Section        0  stm32f7xx_it.o(i.SVC_Handler)
-    i.SysTick_Handler                        0x08002554   Section        0  stm32f7xx_it.o(i.SysTick_Handler)
-    i.SystemClock_Config                     0x0800255c   Section        0  main.o(i.SystemClock_Config)
-    SystemClock_Config                       0x0800255d   Thumb Code   172  main.o(i.SystemClock_Config)
-    i.SystemCoreClockUpdate                  0x08002614   Section        0  system_stm32f7xx.o(i.SystemCoreClockUpdate)
-    i.SystemInit                             0x080026d4   Section        0  system_stm32f7xx.o(i.SystemInit)
-    i.UsageFault_Handler                     0x080026f0   Section        0  stm32f7xx_it.o(i.UsageFault_Handler)
-    i.__NVIC_GetPriorityGrouping             0x080026f4   Section        0  stm32f7xx_hal_cortex.o(i.__NVIC_GetPriorityGrouping)
-    __NVIC_GetPriorityGrouping               0x080026f5   Thumb Code    10  stm32f7xx_hal_cortex.o(i.__NVIC_GetPriorityGrouping)
-    i.__NVIC_SetPriority                     0x08002704   Section        0  stm32f7xx_hal_cortex.o(i.__NVIC_SetPriority)
-    __NVIC_SetPriority                       0x08002705   Thumb Code    32  stm32f7xx_hal_cortex.o(i.__NVIC_SetPriority)
-    i.actualizar                             0x0800272c   Section        0  lcd.o(i.actualizar)
-    i.copy_to_lcd                            0x080027c4   Section        0  lcd.o(i.copy_to_lcd)
-    i.main                                   0x08002890   Section        0  main.o(i.main)
-    i.wr_cmd                                 0x080028d8   Section        0  lcd.o(i.wr_cmd)
-    i.wr_data                                0x08002938   Section        0  lcd.o(i.wr_data)
-    x$fpl$fpinit                             0x08002998   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x08002998   Number         0  fpinit.o(x$fpl$fpinit)
-    .constdata                               0x080029a4   Section     2444  lcd.o(.constdata)
-    .constdata                               0x08003330   Section      128  spi_stm32f7xx.o(.constdata)
-    DriverVersion                            0x08003330   Data           4  spi_stm32f7xx.o(.constdata)
-    DriverCapabilities                       0x08003334   Data           4  spi_stm32f7xx.o(.constdata)
-    SPI1_mosi                                0x08003338   Data          16  spi_stm32f7xx.o(.constdata)
-    SPI1_sck                                 0x08003348   Data          16  spi_stm32f7xx.o(.constdata)
-    SPI1_Resources                           0x08003358   Data          44  spi_stm32f7xx.o(.constdata)
-    .constdata                               0x080033b0   Section       24  system_stm32f7xx.o(.constdata)
+    i.MemManage_Handler                      0x0800172c   Section        0  stm32f7xx_it.o(i.MemManage_Handler)
+    i.NMI_Handler                            0x08001730   Section        0  stm32f7xx_it.o(i.NMI_Handler)
+    i.PendSV_Handler                         0x08001732   Section        0  stm32f7xx_it.o(i.PendSV_Handler)
+    i.SPI1_Control                           0x08001734   Section        0  spi_stm32f7xx.o(i.SPI1_Control)
+    SPI1_Control                             0x08001735   Thumb Code    18  spi_stm32f7xx.o(i.SPI1_Control)
+    i.SPI1_GetDataCount                      0x0800174c   Section        0  spi_stm32f7xx.o(i.SPI1_GetDataCount)
+    SPI1_GetDataCount                        0x0800174d   Thumb Code    10  spi_stm32f7xx.o(i.SPI1_GetDataCount)
+    i.SPI1_GetStatus                         0x0800175c   Section        0  spi_stm32f7xx.o(i.SPI1_GetStatus)
+    SPI1_GetStatus                           0x0800175d   Thumb Code    12  spi_stm32f7xx.o(i.SPI1_GetStatus)
+    i.SPI1_IRQHandler                        0x0800176c   Section        0  spi_stm32f7xx.o(i.SPI1_IRQHandler)
+    i.SPI1_Initialize                        0x0800177c   Section        0  spi_stm32f7xx.o(i.SPI1_Initialize)
+    SPI1_Initialize                          0x0800177d   Thumb Code    14  spi_stm32f7xx.o(i.SPI1_Initialize)
+    i.SPI1_PowerControl                      0x08001790   Section        0  spi_stm32f7xx.o(i.SPI1_PowerControl)
+    SPI1_PowerControl                        0x08001791   Thumb Code    14  spi_stm32f7xx.o(i.SPI1_PowerControl)
+    i.SPI1_Receive                           0x080017a4   Section        0  spi_stm32f7xx.o(i.SPI1_Receive)
+    SPI1_Receive                             0x080017a5   Thumb Code    18  spi_stm32f7xx.o(i.SPI1_Receive)
+    i.SPI1_Send                              0x080017bc   Section        0  spi_stm32f7xx.o(i.SPI1_Send)
+    SPI1_Send                                0x080017bd   Thumb Code    18  spi_stm32f7xx.o(i.SPI1_Send)
+    i.SPI1_Transfer                          0x080017d4   Section        0  spi_stm32f7xx.o(i.SPI1_Transfer)
+    SPI1_Transfer                            0x080017d5   Thumb Code    22  spi_stm32f7xx.o(i.SPI1_Transfer)
+    i.SPI1_Uninitialize                      0x080017f0   Section        0  spi_stm32f7xx.o(i.SPI1_Uninitialize)
+    SPI1_Uninitialize                        0x080017f1   Thumb Code    10  spi_stm32f7xx.o(i.SPI1_Uninitialize)
+    i.SPIX_GetCapabilities                   0x08001800   Section        0  spi_stm32f7xx.o(i.SPIX_GetCapabilities)
+    SPIX_GetCapabilities                     0x08001801   Thumb Code     6  spi_stm32f7xx.o(i.SPIX_GetCapabilities)
+    i.SPIX_GetVersion                        0x0800180c   Section        0  spi_stm32f7xx.o(i.SPIX_GetVersion)
+    SPIX_GetVersion                          0x0800180d   Thumb Code    10  spi_stm32f7xx.o(i.SPIX_GetVersion)
+    i.SPI_Control                            0x0800181c   Section        0  spi_stm32f7xx.o(i.SPI_Control)
+    SPI_Control                              0x0800181d   Thumb Code  1138  spi_stm32f7xx.o(i.SPI_Control)
+    i.SPI_GetDataCount                       0x08001c8e   Section        0  spi_stm32f7xx.o(i.SPI_GetDataCount)
+    SPI_GetDataCount                         0x08001c8f   Thumb Code     8  spi_stm32f7xx.o(i.SPI_GetDataCount)
+    i.SPI_GetStatus                          0x08001c96   Section        0  spi_stm32f7xx.o(i.SPI_GetStatus)
+    SPI_GetStatus                            0x08001c97   Thumb Code    44  spi_stm32f7xx.o(i.SPI_GetStatus)
+    i.SPI_IRQHandler                         0x08001cc2   Section        0  spi_stm32f7xx.o(i.SPI_IRQHandler)
+    SPI_IRQHandler                           0x08001cc3   Thumb Code   532  spi_stm32f7xx.o(i.SPI_IRQHandler)
+    i.SPI_Initialize                         0x08001ed6   Section        0  spi_stm32f7xx.o(i.SPI_Initialize)
+    SPI_Initialize                           0x08001ed7   Thumb Code   222  spi_stm32f7xx.o(i.SPI_Initialize)
+    i.SPI_PeripheralReset                    0x08001fb4   Section        0  spi_stm32f7xx.o(i.SPI_PeripheralReset)
+    SPI_PeripheralReset                      0x08001fb5   Thumb Code   262  spi_stm32f7xx.o(i.SPI_PeripheralReset)
+    i.SPI_PowerControl                       0x080020d8   Section        0  spi_stm32f7xx.o(i.SPI_PowerControl)
+    SPI_PowerControl                         0x080020d9   Thumb Code   608  spi_stm32f7xx.o(i.SPI_PowerControl)
+    i.SPI_Receive                            0x08002358   Section        0  spi_stm32f7xx.o(i.SPI_Receive)
+    SPI_Receive                              0x08002359   Thumb Code   148  spi_stm32f7xx.o(i.SPI_Receive)
+    i.SPI_Send                               0x080023ec   Section        0  spi_stm32f7xx.o(i.SPI_Send)
+    SPI_Send                                 0x080023ed   Thumb Code   148  spi_stm32f7xx.o(i.SPI_Send)
+    i.SPI_Transfer                           0x08002480   Section        0  spi_stm32f7xx.o(i.SPI_Transfer)
+    SPI_Transfer                             0x08002481   Thumb Code   112  spi_stm32f7xx.o(i.SPI_Transfer)
+    i.SPI_Uninitialize                       0x080024f0   Section        0  spi_stm32f7xx.o(i.SPI_Uninitialize)
+    SPI_Uninitialize                         0x080024f1   Thumb Code   102  spi_stm32f7xx.o(i.SPI_Uninitialize)
+    i.SVC_Handler                            0x08002556   Section        0  stm32f7xx_it.o(i.SVC_Handler)
+    i.SysTick_Handler                        0x08002558   Section        0  stm32f7xx_it.o(i.SysTick_Handler)
+    i.SystemClock_Config                     0x08002560   Section        0  main.o(i.SystemClock_Config)
+    SystemClock_Config                       0x08002561   Thumb Code   172  main.o(i.SystemClock_Config)
+    i.SystemCoreClockUpdate                  0x08002618   Section        0  system_stm32f7xx.o(i.SystemCoreClockUpdate)
+    i.SystemInit                             0x080026d8   Section        0  system_stm32f7xx.o(i.SystemInit)
+    i.UsageFault_Handler                     0x080026f4   Section        0  stm32f7xx_it.o(i.UsageFault_Handler)
+    i.__NVIC_GetPriorityGrouping             0x080026f8   Section        0  stm32f7xx_hal_cortex.o(i.__NVIC_GetPriorityGrouping)
+    __NVIC_GetPriorityGrouping               0x080026f9   Thumb Code    10  stm32f7xx_hal_cortex.o(i.__NVIC_GetPriorityGrouping)
+    i.__NVIC_SetPriority                     0x08002708   Section        0  stm32f7xx_hal_cortex.o(i.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x08002709   Thumb Code    32  stm32f7xx_hal_cortex.o(i.__NVIC_SetPriority)
+    i.actualizar                             0x08002730   Section        0  lcd.o(i.actualizar)
+    i.copy_to_lcd                            0x080027c8   Section        0  lcd.o(i.copy_to_lcd)
+    i.main                                   0x08002894   Section        0  main.o(i.main)
+    i.wr_cmd                                 0x080028dc   Section        0  lcd.o(i.wr_cmd)
+    i.wr_data                                0x08002924   Section        0  lcd.o(i.wr_data)
+    x$fpl$fpinit                             0x08002968   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x08002968   Number         0  fpinit.o(x$fpl$fpinit)
+    .constdata                               0x08002974   Section     2444  lcd.o(.constdata)
+    .constdata                               0x08003300   Section      128  spi_stm32f7xx.o(.constdata)
+    DriverVersion                            0x08003300   Data           4  spi_stm32f7xx.o(.constdata)
+    DriverCapabilities                       0x08003304   Data           4  spi_stm32f7xx.o(.constdata)
+    SPI1_mosi                                0x08003308   Data          16  spi_stm32f7xx.o(.constdata)
+    SPI1_sck                                 0x08003318   Data          16  spi_stm32f7xx.o(.constdata)
+    SPI1_Resources                           0x08003328   Data          44  spi_stm32f7xx.o(.constdata)
+    .constdata                               0x08003380   Section       24  system_stm32f7xx.o(.constdata)
     .data                                    0x20020000   Section       20  lcd.o(.data)
     .data                                    0x20020014   Section        9  stm32f7xx_hal.o(.data)
     .data                                    0x20020020   Section        4  system_stm32f7xx.o(.data)
@@ -1189,31 +1189,31 @@ Image Symbol Table
     HAL_RCC_OscConfig                        0x08001109   Thumb Code  1296  stm32f7xx_hal_rcc.o(i.HAL_RCC_OscConfig)
     HAL_SYSTICK_Config                       0x0800161d   Thumb Code    52  stm32f7xx_hal_cortex.o(i.HAL_SYSTICK_Config)
     HardFault_Handler                        0x08001651   Thumb Code     4  stm32f7xx_it.o(i.HardFault_Handler)
-    LCD_reset                                0x08001655   Thumb Code   188  lcd.o(i.LCD_reset)
-    MemManage_Handler                        0x08001729   Thumb Code     4  stm32f7xx_it.o(i.MemManage_Handler)
-    NMI_Handler                              0x0800172d   Thumb Code     2  stm32f7xx_it.o(i.NMI_Handler)
-    PendSV_Handler                           0x0800172f   Thumb Code     2  stm32f7xx_it.o(i.PendSV_Handler)
-    SPI1_IRQHandler                          0x08001769   Thumb Code    10  spi_stm32f7xx.o(i.SPI1_IRQHandler)
-    SVC_Handler                              0x08002553   Thumb Code     2  stm32f7xx_it.o(i.SVC_Handler)
-    SysTick_Handler                          0x08002555   Thumb Code     8  stm32f7xx_it.o(i.SysTick_Handler)
-    SystemCoreClockUpdate                    0x08002615   Thumb Code   170  system_stm32f7xx.o(i.SystemCoreClockUpdate)
-    SystemInit                               0x080026d5   Thumb Code    24  system_stm32f7xx.o(i.SystemInit)
-    UsageFault_Handler                       0x080026f1   Thumb Code     4  stm32f7xx_it.o(i.UsageFault_Handler)
-    actualizar                               0x0800272d   Thumb Code   130  lcd.o(i.actualizar)
-    copy_to_lcd                              0x080027c5   Thumb Code   196  lcd.o(i.copy_to_lcd)
-    main                                     0x08002891   Thumb Code    48  main.o(i.main)
-    wr_cmd                                   0x080028d9   Thumb Code    84  lcd.o(i.wr_cmd)
-    wr_data                                  0x08002939   Thumb Code    82  lcd.o(i.wr_data)
-    _fp_init                                 0x08002999   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x080029a1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x080029a1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Arial12x12                               0x080029a4   Data        2400  lcd.o(.constdata)
-    valores                                  0x08003304   Data          44  lcd.o(.constdata)
-    Driver_SPI1                              0x08003384   Data          44  spi_stm32f7xx.o(.constdata)
-    AHBPrescTable                            0x080033b0   Data          16  system_stm32f7xx.o(.constdata)
-    APBPrescTable                            0x080033c0   Data           8  system_stm32f7xx.o(.constdata)
-    Region$$Table$$Base                      0x080033c8   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080033e8   Number         0  anon$$obj.o(Region$$Table)
+    LCD_reset                                0x08001655   Thumb Code   190  lcd.o(i.LCD_reset)
+    MemManage_Handler                        0x0800172d   Thumb Code     4  stm32f7xx_it.o(i.MemManage_Handler)
+    NMI_Handler                              0x08001731   Thumb Code     2  stm32f7xx_it.o(i.NMI_Handler)
+    PendSV_Handler                           0x08001733   Thumb Code     2  stm32f7xx_it.o(i.PendSV_Handler)
+    SPI1_IRQHandler                          0x0800176d   Thumb Code    10  spi_stm32f7xx.o(i.SPI1_IRQHandler)
+    SVC_Handler                              0x08002557   Thumb Code     2  stm32f7xx_it.o(i.SVC_Handler)
+    SysTick_Handler                          0x08002559   Thumb Code     8  stm32f7xx_it.o(i.SysTick_Handler)
+    SystemCoreClockUpdate                    0x08002619   Thumb Code   170  system_stm32f7xx.o(i.SystemCoreClockUpdate)
+    SystemInit                               0x080026d9   Thumb Code    24  system_stm32f7xx.o(i.SystemInit)
+    UsageFault_Handler                       0x080026f5   Thumb Code     4  stm32f7xx_it.o(i.UsageFault_Handler)
+    actualizar                               0x08002731   Thumb Code   130  lcd.o(i.actualizar)
+    copy_to_lcd                              0x080027c9   Thumb Code   196  lcd.o(i.copy_to_lcd)
+    main                                     0x08002895   Thumb Code    48  main.o(i.main)
+    wr_cmd                                   0x080028dd   Thumb Code    62  lcd.o(i.wr_cmd)
+    wr_data                                  0x08002925   Thumb Code    60  lcd.o(i.wr_data)
+    _fp_init                                 0x08002969   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08002971   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08002971   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Arial12x12                               0x08002974   Data        2400  lcd.o(.constdata)
+    valores                                  0x080032d4   Data          44  lcd.o(.constdata)
+    Driver_SPI1                              0x08003354   Data          44  spi_stm32f7xx.o(.constdata)
+    AHBPrescTable                            0x08003380   Data          16  system_stm32f7xx.o(.constdata)
+    APBPrescTable                            0x08003390   Data           8  system_stm32f7xx.o(.constdata)
+    Region$$Table$$Base                      0x08003398   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080033b8   Number         0  anon$$obj.o(Region$$Table)
     posicionL1                               0x20020000   Data           1  lcd.o(.data)
     posicionL2                               0x20020002   Data           2  lcd.o(.data)
     comienzo                                 0x20020004   Data           2  lcd.o(.data)
@@ -1241,9 +1241,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001f9
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000340c, Max: 0x00200000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000033dc, Max: 0x00200000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000033e8, Max: 0x00200000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000033b8, Max: 0x00200000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1343,67 +1343,67 @@ Memory Map of the image
     0x08001108   0x08001108   0x00000514   Code   RO         1319    i.HAL_RCC_OscConfig  stm32f7xx_hal_rcc.o
     0x0800161c   0x0800161c   0x00000034   Code   RO          753    i.HAL_SYSTICK_Config  stm32f7xx_hal_cortex.o
     0x08001650   0x08001650   0x00000004   Code   RO          253    i.HardFault_Handler  stm32f7xx_it.o
-    0x08001654   0x08001654   0x000000d4   Code   RO          150    i.LCD_reset         lcd.o
-    0x08001728   0x08001728   0x00000004   Code   RO          254    i.MemManage_Handler  stm32f7xx_it.o
-    0x0800172c   0x0800172c   0x00000002   Code   RO          255    i.NMI_Handler       stm32f7xx_it.o
-    0x0800172e   0x0800172e   0x00000002   Code   RO          256    i.PendSV_Handler    stm32f7xx_it.o
-    0x08001730   0x08001730   0x00000018   Code   RO          369    i.SPI1_Control      spi_stm32f7xx.o
-    0x08001748   0x08001748   0x00000010   Code   RO          370    i.SPI1_GetDataCount  spi_stm32f7xx.o
-    0x08001758   0x08001758   0x00000010   Code   RO          371    i.SPI1_GetStatus    spi_stm32f7xx.o
-    0x08001768   0x08001768   0x00000010   Code   RO          372    i.SPI1_IRQHandler   spi_stm32f7xx.o
-    0x08001778   0x08001778   0x00000014   Code   RO          373    i.SPI1_Initialize   spi_stm32f7xx.o
-    0x0800178c   0x0800178c   0x00000014   Code   RO          374    i.SPI1_PowerControl  spi_stm32f7xx.o
-    0x080017a0   0x080017a0   0x00000018   Code   RO          375    i.SPI1_Receive      spi_stm32f7xx.o
-    0x080017b8   0x080017b8   0x00000018   Code   RO          376    i.SPI1_Send         spi_stm32f7xx.o
-    0x080017d0   0x080017d0   0x0000001c   Code   RO          377    i.SPI1_Transfer     spi_stm32f7xx.o
-    0x080017ec   0x080017ec   0x00000010   Code   RO          378    i.SPI1_Uninitialize  spi_stm32f7xx.o
-    0x080017fc   0x080017fc   0x0000000c   Code   RO          379    i.SPIX_GetCapabilities  spi_stm32f7xx.o
-    0x08001808   0x08001808   0x00000010   Code   RO          380    i.SPIX_GetVersion   spi_stm32f7xx.o
-    0x08001818   0x08001818   0x00000472   Code   RO          381    i.SPI_Control       spi_stm32f7xx.o
-    0x08001c8a   0x08001c8a   0x00000008   Code   RO          382    i.SPI_GetDataCount  spi_stm32f7xx.o
-    0x08001c92   0x08001c92   0x0000002c   Code   RO          383    i.SPI_GetStatus     spi_stm32f7xx.o
-    0x08001cbe   0x08001cbe   0x00000214   Code   RO          384    i.SPI_IRQHandler    spi_stm32f7xx.o
-    0x08001ed2   0x08001ed2   0x000000de   Code   RO          385    i.SPI_Initialize    spi_stm32f7xx.o
-    0x08001fb0   0x08001fb0   0x00000124   Code   RO          386    i.SPI_PeripheralReset  spi_stm32f7xx.o
-    0x080020d4   0x080020d4   0x00000280   Code   RO          387    i.SPI_PowerControl  spi_stm32f7xx.o
-    0x08002354   0x08002354   0x00000094   Code   RO          388    i.SPI_Receive       spi_stm32f7xx.o
-    0x080023e8   0x080023e8   0x00000094   Code   RO          389    i.SPI_Send          spi_stm32f7xx.o
-    0x0800247c   0x0800247c   0x00000070   Code   RO          390    i.SPI_Transfer      spi_stm32f7xx.o
-    0x080024ec   0x080024ec   0x00000066   Code   RO          391    i.SPI_Uninitialize  spi_stm32f7xx.o
-    0x08002552   0x08002552   0x00000002   Code   RO          257    i.SVC_Handler       stm32f7xx_it.o
-    0x08002554   0x08002554   0x00000008   Code   RO          258    i.SysTick_Handler   stm32f7xx_it.o
-    0x0800255c   0x0800255c   0x000000b8   Code   RO            5    i.SystemClock_Config  main.o
-    0x08002614   0x08002614   0x000000c0   Code   RO         1846    i.SystemCoreClockUpdate  system_stm32f7xx.o
-    0x080026d4   0x080026d4   0x0000001c   Code   RO         1847    i.SystemInit        system_stm32f7xx.o
-    0x080026f0   0x080026f0   0x00000004   Code   RO          259    i.UsageFault_Handler  stm32f7xx_it.o
-    0x080026f4   0x080026f4   0x00000010   Code   RO          755    i.__NVIC_GetPriorityGrouping  stm32f7xx_hal_cortex.o
-    0x08002704   0x08002704   0x00000028   Code   RO          756    i.__NVIC_SetPriority  stm32f7xx_hal_cortex.o
-    0x0800272c   0x0800272c   0x00000098   Code   RO          151    i.actualizar        lcd.o
-    0x080027c4   0x080027c4   0x000000cc   Code   RO          152    i.copy_to_lcd       lcd.o
-    0x08002890   0x08002890   0x00000048   Code   RO            6    i.main              main.o
-    0x080028d8   0x080028d8   0x00000060   Code   RO          155    i.wr_cmd            lcd.o
-    0x08002938   0x08002938   0x00000060   Code   RO          156    i.wr_data           lcd.o
-    0x08002998   0x08002998   0x0000000a   Code   RO         2009    x$fpl$fpinit        fz_wv.l(fpinit.o)
-    0x080029a2   0x080029a2   0x00000002   PAD
-    0x080029a4   0x080029a4   0x0000098c   Data   RO          158    .constdata          lcd.o
-    0x08003330   0x08003330   0x00000080   Data   RO          393    .constdata          spi_stm32f7xx.o
-    0x080033b0   0x080033b0   0x00000018   Data   RO         1848    .constdata          system_stm32f7xx.o
-    0x080033c8   0x080033c8   0x00000020   Data   RO         2065    Region$$Table       anon$$obj.o
+    0x08001654   0x08001654   0x000000d8   Code   RO          150    i.LCD_reset         lcd.o
+    0x0800172c   0x0800172c   0x00000004   Code   RO          254    i.MemManage_Handler  stm32f7xx_it.o
+    0x08001730   0x08001730   0x00000002   Code   RO          255    i.NMI_Handler       stm32f7xx_it.o
+    0x08001732   0x08001732   0x00000002   Code   RO          256    i.PendSV_Handler    stm32f7xx_it.o
+    0x08001734   0x08001734   0x00000018   Code   RO          369    i.SPI1_Control      spi_stm32f7xx.o
+    0x0800174c   0x0800174c   0x00000010   Code   RO          370    i.SPI1_GetDataCount  spi_stm32f7xx.o
+    0x0800175c   0x0800175c   0x00000010   Code   RO          371    i.SPI1_GetStatus    spi_stm32f7xx.o
+    0x0800176c   0x0800176c   0x00000010   Code   RO          372    i.SPI1_IRQHandler   spi_stm32f7xx.o
+    0x0800177c   0x0800177c   0x00000014   Code   RO          373    i.SPI1_Initialize   spi_stm32f7xx.o
+    0x08001790   0x08001790   0x00000014   Code   RO          374    i.SPI1_PowerControl  spi_stm32f7xx.o
+    0x080017a4   0x080017a4   0x00000018   Code   RO          375    i.SPI1_Receive      spi_stm32f7xx.o
+    0x080017bc   0x080017bc   0x00000018   Code   RO          376    i.SPI1_Send         spi_stm32f7xx.o
+    0x080017d4   0x080017d4   0x0000001c   Code   RO          377    i.SPI1_Transfer     spi_stm32f7xx.o
+    0x080017f0   0x080017f0   0x00000010   Code   RO          378    i.SPI1_Uninitialize  spi_stm32f7xx.o
+    0x08001800   0x08001800   0x0000000c   Code   RO          379    i.SPIX_GetCapabilities  spi_stm32f7xx.o
+    0x0800180c   0x0800180c   0x00000010   Code   RO          380    i.SPIX_GetVersion   spi_stm32f7xx.o
+    0x0800181c   0x0800181c   0x00000472   Code   RO          381    i.SPI_Control       spi_stm32f7xx.o
+    0x08001c8e   0x08001c8e   0x00000008   Code   RO          382    i.SPI_GetDataCount  spi_stm32f7xx.o
+    0x08001c96   0x08001c96   0x0000002c   Code   RO          383    i.SPI_GetStatus     spi_stm32f7xx.o
+    0x08001cc2   0x08001cc2   0x00000214   Code   RO          384    i.SPI_IRQHandler    spi_stm32f7xx.o
+    0x08001ed6   0x08001ed6   0x000000de   Code   RO          385    i.SPI_Initialize    spi_stm32f7xx.o
+    0x08001fb4   0x08001fb4   0x00000124   Code   RO          386    i.SPI_PeripheralReset  spi_stm32f7xx.o
+    0x080020d8   0x080020d8   0x00000280   Code   RO          387    i.SPI_PowerControl  spi_stm32f7xx.o
+    0x08002358   0x08002358   0x00000094   Code   RO          388    i.SPI_Receive       spi_stm32f7xx.o
+    0x080023ec   0x080023ec   0x00000094   Code   RO          389    i.SPI_Send          spi_stm32f7xx.o
+    0x08002480   0x08002480   0x00000070   Code   RO          390    i.SPI_Transfer      spi_stm32f7xx.o
+    0x080024f0   0x080024f0   0x00000066   Code   RO          391    i.SPI_Uninitialize  spi_stm32f7xx.o
+    0x08002556   0x08002556   0x00000002   Code   RO          257    i.SVC_Handler       stm32f7xx_it.o
+    0x08002558   0x08002558   0x00000008   Code   RO          258    i.SysTick_Handler   stm32f7xx_it.o
+    0x08002560   0x08002560   0x000000b8   Code   RO            5    i.SystemClock_Config  main.o
+    0x08002618   0x08002618   0x000000c0   Code   RO         1846    i.SystemCoreClockUpdate  system_stm32f7xx.o
+    0x080026d8   0x080026d8   0x0000001c   Code   RO         1847    i.SystemInit        system_stm32f7xx.o
+    0x080026f4   0x080026f4   0x00000004   Code   RO          259    i.UsageFault_Handler  stm32f7xx_it.o
+    0x080026f8   0x080026f8   0x00000010   Code   RO          755    i.__NVIC_GetPriorityGrouping  stm32f7xx_hal_cortex.o
+    0x08002708   0x08002708   0x00000028   Code   RO          756    i.__NVIC_SetPriority  stm32f7xx_hal_cortex.o
+    0x08002730   0x08002730   0x00000098   Code   RO          151    i.actualizar        lcd.o
+    0x080027c8   0x080027c8   0x000000cc   Code   RO          152    i.copy_to_lcd       lcd.o
+    0x08002894   0x08002894   0x00000048   Code   RO            6    i.main              main.o
+    0x080028dc   0x080028dc   0x00000048   Code   RO          155    i.wr_cmd            lcd.o
+    0x08002924   0x08002924   0x00000044   Code   RO          156    i.wr_data           lcd.o
+    0x08002968   0x08002968   0x0000000a   Code   RO         2009    x$fpl$fpinit        fz_wv.l(fpinit.o)
+    0x08002972   0x08002972   0x00000002   PAD
+    0x08002974   0x08002974   0x0000098c   Data   RO          158    .constdata          lcd.o
+    0x08003300   0x08003300   0x00000080   Data   RO          393    .constdata          spi_stm32f7xx.o
+    0x08003380   0x08003380   0x00000018   Data   RO         1848    .constdata          system_stm32f7xx.o
+    0x08003398   0x08003398   0x00000020   Data   RO         2065    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x20000000, Load base: 0x0800340c, Size: 0x00000000, Max: 0x00020000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x20000000, Load base: 0x080033dc, Size: 0x00000000, Max: 0x00020000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20020000, Load base: 0x080033e8, Size: 0x00000a08, Max: 0x00060000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20020000, Load base: 0x080033b8, Size: 0x00000a08, Max: 0x00060000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20020000   0x080033e8   0x00000014   Data   RW          159    .data               lcd.o
-    0x20020014   0x080033fc   0x00000009   Data   RW          558    .data               stm32f7xx_hal.o
-    0x2002001d   0x08003405   0x00000003   PAD
-    0x20020020   0x08003408   0x00000004   Data   RW         1849    .data               system_stm32f7xx.o
+    0x20020000   0x080033b8   0x00000014   Data   RW          159    .data               lcd.o
+    0x20020014   0x080033cc   0x00000009   Data   RW          558    .data               stm32f7xx_hal.o
+    0x2002001d   0x080033d5   0x00000003   PAD
+    0x20020020   0x080033d8   0x00000004   Data   RW         1849    .data               system_stm32f7xx.o
     0x20020024        -       0x0000002a   Zero   RW            7    .bss                main.o
     0x2002004e        -       0x0000032a   Zero   RW          157    .bss                lcd.o
     0x20020378        -       0x00000030   Zero   RW          392    .bss                spi_stm32f7xx.o
@@ -1419,7 +1419,7 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      1236        130       2444         20        810      10813   lcd.o
+      1188        124       2444         20        810      10793   lcd.o
        260         36          0          0         42     820374   main.o
       3970        174        128          0         48      57559   spi_stm32f7xx.o
         64         26        504          0       1536        872   startup_stm32f767xx.o
@@ -1433,7 +1433,7 @@ Image component sizes
        220         26         24          4          0       2199   system_stm32f7xx.o
 
     ----------------------------------------------------------------------
-      9342        622       3132         36       2436     957776   Object Totals
+      9294        616       3132         36       2436     957756   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          4          0          0          3          0          0   (incl. Padding)
 
@@ -1491,15 +1491,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     10156        650       3132         36       2532     952344   Grand Totals
-     10156        650       3132         36       2532     952344   ELF Image Totals
-     10156        650       3132         36          0          0   ROM Totals
+     10108        644       3132         36       2532     952324   Grand Totals
+     10108        644       3132         36       2532     952324   ELF Image Totals
+     10108        644       3132         36          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                13288 (  12.98kB)
+    Total RO  Size (Code + RO Data)                13240 (  12.93kB)
     Total RW  Size (RW Data + ZI Data)              2568 (   2.51kB)
-    Total ROM Size (Code + RO Data + RW Data)      13324 (  13.01kB)
+    Total ROM Size (Code + RO Data + RW Data)      13276 (  12.96kB)
 
 ==============================================================================
 
