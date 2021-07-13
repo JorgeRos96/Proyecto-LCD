@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "stm32f7xx_hal.h"
+#include "stm32f4xx_hal.h"
 
 void LCD_reset(void);
 void lcd_clean(void);
@@ -15,4 +15,5 @@ void actualizar(char lcd_text[2][20+1]);
 void pixel (int x, int y, int color);
 void GPIO_INIT();
 void escribe();
+void pant_neg (void);
 

@@ -1,8 +1,30 @@
+/**
+  ******************************************************************************
+  * @file    Templates/Src/LCD.c
+  * @author  MCD Application Team
+  * @brief   Fichero de inicialización del la pantalla LCD de la tarjeta de 
+	*					 aplicaciones y funciones para representar texto.					 
+	*					 Pines del LCD:
+	*					 PIN MOSI-> PB5	
+	*					 PIN SCK->	PA5	
+	*					 PIN Reset->PA6	
+	*					 PIN A0->	 	PF13
+	*					 PIN nCs-> 	PD14	
+  *
+  * @note    modified by ARM
+  *          The modifications allow to use this file as User Code Template
+  *          within the Device Family Pack.
+  ******************************************************************************
+  * 
+  ******************************************************************************
+  */
+
+
 #include "LCD.h"
 #include "Arial12x12.h"
 #include "Driver_SPI.h"
+#include "mbedAppBoard_PINOUT.h"
 
-const int valores[11]={0xAE, 0xA2, 0xA0, 0xC8, 0x22, 0x2F, 0x40, 0xAF, 0x81, 0x17, 0xA6};
 unsigned char buffer[512];
 uint8_t posicionL1=0;
 uint16_t posicionL2=256;
@@ -17,25 +39,31 @@ char lcd_text[2][20+1];
 extern ARM_DRIVER_SPI Driver_SPI1;
 ARM_DRIVER_SPI* SPIdrv = &Driver_SPI1;
 
-void wr_data(unsigned char data){
+void wr_data(unsigned char data){	
   
 	ARM_SPI_STATUS stat;
-	HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_SET);	// Seleccionar A0 = 1;
+
+	HAL_GPIO_WritePin(LCD_A0.Port, LCD_A0.IO, GPIO_PIN_SET);	// Seleccionar A0 = 1;
 	SPIdrv -> Send(&data,sizeof(data));		// Escribir un dato (data) 
-  stat = SPIdrv->GetStatus ();
+		stat = SPIdrv->GetStatus ();
 	while(stat.busy){
 	stat = SPIdrv->GetStatus ();
 	}
+	
+
 }
 
 void wr_cmd(unsigned char cmd){
 	
 	ARM_SPI_STATUS stat;
-  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);	// Seleccionar A0 = 0;
-  SPIdrv -> Send(&cmd,sizeof(cmd));		// Escribir un comando (cmd) 
+	
+  HAL_GPIO_WritePin(LCD_A0.Port, LCD_A0.IO, GPIO_PIN_RESET);	// Seleccionar A0 = 0;
+	SPIdrv -> Send(&cmd,sizeof(cmd));		// Escribir un comando (cmd) 
 	stat = SPIdrv->GetStatus ();
 	while(stat.busy){
 	stat = SPIdrv->GetStatus ();
+	
+	
 	}
 
 }
@@ -48,20 +76,17 @@ void LCD_reset(void){
 	status = SPIdrv->Initialize(NULL);
 	status = SPIdrv->PowerControl(ARM_POWER_FULL);
 	status = SPIdrv->Control(ARM_SPI_MODE_MASTER | ARM_SPI_CPOL1_CPHA1 | ARM_SPI_MSB_LSB | ARM_SPI_DATA_BITS(8), 1000000);
-	
-	  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);    //A0 = 0
-
-  /*Configure GPIO pin Output Level */
-		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);	// Seleccionar CS = 0 ya que solo se controla un periferico con SPI
 
 
   /*Configure GPIO pin Output Level */
 	
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET); //RESET = 0
+	HAL_GPIO_WritePin(LCD_RESET.Port, LCD_RESET.IO, GPIO_PIN_RESET); //RESET = 0
 	HAL_Delay(2);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);		//RESET = 1
+	HAL_GPIO_WritePin(LCD_RESET.Port, LCD_RESET.IO, GPIO_PIN_SET);		//RESET = 1
 	HAL_Delay(20);
-		
+	
+		HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
+		//HAL_Delay(1);
 			wr_cmd(0xAE);
 			wr_cmd(0xA2);
 			wr_cmd(0xA0);
@@ -73,20 +98,18 @@ void LCD_reset(void){
 			wr_cmd(0x81);
 			wr_cmd(0x17);
 			wr_cmd(0xA6);
-		for(int i=0; i<512;i++){
-		buffer[i]=0;
-	}
-	copy_to_lcd();
+		HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
+		lcd_clean();
 
 }
 
 void copy_to_lcd(void){
     int i;
+	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
     wr_cmd(0x00);      // 4 bits de la parte baja de la dirección a 0
     wr_cmd(0x10);      // 4 bits de la parte alta de la dirección a 0
     wr_cmd(0xB0);      // Página 0
     
-		HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_SET);	// Seleccionar A0 = 1;
     for(i=0;i<128;i++){
         wr_data(buffer[i]);
         }
@@ -96,7 +119,6 @@ void copy_to_lcd(void){
     wr_cmd(0x10);      // 4 bits de la parte alta de la dirección a 0
     wr_cmd(0xB1);      // Página 1
     
-		HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_SET);	// Seleccionar A0 = 1;
     for(i=128;i<256;i++){
         wr_data(buffer[i]);
         }
@@ -105,7 +127,6 @@ void copy_to_lcd(void){
     wr_cmd(0x10);      
     wr_cmd(0xB2);      //Página 2
 				
-		HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_SET);	// Seleccionar A0 = 1;
     for(i=256;i<384;i++){
         wr_data(buffer[i]);
         }
@@ -114,13 +135,12 @@ void copy_to_lcd(void){
     wr_cmd(0x00);       
     wr_cmd(0x10);       
     wr_cmd(0xB3);      // Pagina 3
-     
-  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13,GPIO_PIN_SET);
-				
+     				
 				
     for(i=384;i<512;i++){
         wr_data(buffer[i]);
         }
+		HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
 }
 
 void lcd_clean(){
@@ -193,6 +213,13 @@ void pixel (int x, int y, int color){
     copy_to_lcd();
 }
 
+void pant_neg (void){
+		for(int i=0; i<512;i++){
+		buffer[i]=0xff;
+	}
+	copy_to_lcd();
+}
+
 void GPIO_INIT(void){
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 
@@ -202,33 +229,33 @@ void GPIO_INIT(void){
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LCD_RESET.Port, LCD_RESET.IO, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LCD_A0.Port, LCD_A0.IO, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
 
-  /*Configure GPIO pin : GPIO_PIN_6 */
-  GPIO_InitStruct.Pin = GPIO_PIN_6;
+  /*Configure GPIO pin : Reset */
+  GPIO_InitStruct.Pin = LCD_RESET.IO;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(LCD_RESET.Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : GPIO_PIN_13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  /*Configure GPIO pin : A0 */
+  GPIO_InitStruct.Pin = LCD_A0.IO;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+  HAL_GPIO_Init(LCD_A0.Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : GPIO_PIN_14 */
-  GPIO_InitStruct.Pin = GPIO_PIN_14;
+  /*Configure GPIO pin : CS */
+  GPIO_InitStruct.Pin = LCD_CS_N.IO;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+  HAL_GPIO_Init(LCD_CS_N.Port, &GPIO_InitStruct);
 
 }
