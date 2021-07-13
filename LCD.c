@@ -86,7 +86,6 @@ void LCD_reset(void){
 	HAL_Delay(20);
 	
 		HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
-		//HAL_Delay(1);
 			wr_cmd(0xAE);
 			wr_cmd(0xA2);
 			wr_cmd(0xA0);
