@@ -42,13 +42,15 @@ ARM_DRIVER_SPI* SPIdrv = &Driver_SPI1;
 void wr_data(unsigned char data){	
   
 	ARM_SPI_STATUS stat;
-
+	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(LCD_A0.Port, LCD_A0.IO, GPIO_PIN_SET);	// Seleccionar A0 = 1;
 	SPIdrv -> Send(&data,sizeof(data));		// Escribir un dato (data) 
 		stat = SPIdrv->GetStatus ();
 	while(stat.busy){
 	stat = SPIdrv->GetStatus ();
 	}
+	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
+
 	
 
 }
@@ -57,15 +59,14 @@ void wr_cmd(unsigned char cmd){
 	
 	ARM_SPI_STATUS stat;
 	
+	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
   HAL_GPIO_WritePin(LCD_A0.Port, LCD_A0.IO, GPIO_PIN_RESET);	// Seleccionar A0 = 0;
 	SPIdrv -> Send(&cmd,sizeof(cmd));		// Escribir un comando (cmd) 
 	stat = SPIdrv->GetStatus ();
 	while(stat.busy){
 	stat = SPIdrv->GetStatus ();
-	
-	
 	}
-
+	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
 }
 
 void LCD_reset(void){
@@ -85,7 +86,7 @@ void LCD_reset(void){
 	HAL_GPIO_WritePin(LCD_RESET.Port, LCD_RESET.IO, GPIO_PIN_SET);		//RESET = 1
 	HAL_Delay(20);
 	
-		HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
+	//	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
 			wr_cmd(0xAE);
 			wr_cmd(0xA2);
 			wr_cmd(0xA0);
@@ -97,14 +98,14 @@ void LCD_reset(void){
 			wr_cmd(0x81);
 			wr_cmd(0x17);
 			wr_cmd(0xA6);
-		HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
+	//	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
 		lcd_clean();
 
 }
 
 void copy_to_lcd(void){
     int i;
-	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
+	//HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_RESET);
     wr_cmd(0x00);      // 4 bits de la parte baja de la dirección a 0
     wr_cmd(0x10);      // 4 bits de la parte alta de la dirección a 0
     wr_cmd(0xB0);      // Página 0
@@ -139,7 +140,7 @@ void copy_to_lcd(void){
     for(i=384;i<512;i++){
         wr_data(buffer[i]);
         }
-		HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
+	//	HAL_GPIO_WritePin(LCD_CS_N.Port, LCD_CS_N.IO, GPIO_PIN_SET);
 }
 
 void lcd_clean(){
