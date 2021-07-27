@@ -39,6 +39,8 @@
 #define RTE_DEVICE_HAL_RCC
 /*  Keil::Device:STM32Cube HAL:SPI:1.7.9 */
 #define RTE_DEVICE_HAL_SPI
+/*  Keil::Device:STM32Cube HAL:TIM:1.7.9 */
+#define RTE_DEVICE_HAL_TIM
 /*  Keil::Device:Startup:2.6.3 */
 #define RTE_DEVICE_STARTUP_STM32F4XX    /* Device Startup for STM32F4 */
 
