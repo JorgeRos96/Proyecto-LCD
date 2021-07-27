@@ -412,6 +412,16 @@
               <FileType>1</FileType>
               <FilePath>.\stm32f4xx_hal_msp.c</FilePath>
             </File>
+            <File>
+              <FileName>Delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>Delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Delay.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -498,6 +508,12 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="SPI" Cvendor="Keil" Cversion="1.7.9" condition="STM32F4 HAL DMA">
+        <package name="STM32F4xx_DFP" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.15.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="TIM" Cvendor="Keil" Cversion="1.7.9" condition="STM32F4 HAL DMA">
         <package name="STM32F4xx_DFP" schemaVersion="1.6.3" url="http://www.keil.com/pack/" vendor="Keil" version="2.15.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>

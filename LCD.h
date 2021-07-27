@@ -3,7 +3,7 @@
 #include <string.h>
 #include "stm32f4xx_hal.h"
 
-void LCD_reset(void);
+int LCD_reset(void);
 void lcd_clean(void);
 void copy_to_lcd(void);
 void wr_data(unsigned char data);

@@ -4,9 +4,36 @@
   * @author  MCD Application Team
   * @brief   Proyecto para el manejo de la pantalla LCD de la tarjeta de 
 	*				 	 aplicaciones a traves del uso del SPI para comunicarse con el
-	*					 microcontrolador.
-	*					 
+	*					 microcontrolador. Para representar el texto por pantalla se utiliza 
+	*			 		 la fuente de texto Arial a traves de la librería Arial12x12.
+	*					 Se emplea el SPI1 con la configuración:
+	*					
+	*					 - SPI Mode Master
+	*					 - CPOL1 y CPHA1
+	*					 - MSB a LSB
+	*					 - Envío de 8 bits de datos
+	*					 - Velocidad del SPI 1 MHz
+	*
+	*					 Los pines MOSI y SCK se configuran a traves del fichero RTE_Device.h.
+	*					 El resto de los pines se configuran en la función GPIO_INIT de la  
+	*					 librería LCD. Los pines que se utilizan son los correspondientes al 
+	*					 conexionado de la mbed application shield y que vienen definidos en  
+	*					 el fichero mbedApplicationBoard_PINOUT.
+	*					 Debido al conflicto entre el SPI y el ETHERNET se ha realizado el 
+	*					 el cambio del Solder Bridge SB121 para colocarlo en el SB122. Con esto
+	*					 al conectar el MOSI en el pin PA7 en realidad se conecta al pin PB5,
+	*					 por lo que la configuración de los pines es la siguiente:
+	*					
+	*					 PIN MOSI-> PB5	
+	*					 PIN SCK->	PA5	
+	*					 PIN Reset->PA6	
+	*					 PIN A0->	 	PF13
+	*					 PIN nCs-> 	PD14	
   *
+	*					 Se configura el reloj del sistema para que trabaje a una frecuencia 
+	*					 de 180 MHz utilizando como fuente de reloj el PLL con el HSI.
+	*					  
+	*	
   * @note    modified by ARM
   *          The modifications allow to use this file as User Code Template
   *          within the Device Family Pack.
@@ -18,52 +45,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "LCD.h"
+#include "Delay.h"
+
 #ifdef _RTE_
 #include "RTE_Components.h"             // Component selection
 #endif
-#ifdef RTE_CMSIS_RTOS2                  // when RTE component CMSIS RTOS2 is used
-#include "cmsis_os2.h"                  // ::CMSIS:RTOS2
-#endif
 
-#ifdef RTE_CMSIS_RTOS2_RTX5
-/**
-  * Override default HAL_GetTick function
-  */
-uint32_t HAL_GetTick (void) {
-  static uint32_t ticks = 0U;
-         uint32_t i;
-
-  if (osKernelGetState () == osKernelRunning) {
-    return ((uint32_t)osKernelGetTickCount ());
-  }
-
-  /* If Kernel is not running wait approximately 1 ms then increment 
-     and return auxiliary tick counter value */
-  for (i = (SystemCoreClock >> 14U); i > 0U; i--) {
-    __NOP(); __NOP(); __NOP(); __NOP(); __NOP(); __NOP();
-    __NOP(); __NOP(); __NOP(); __NOP(); __NOP(); __NOP();
-  }
-  return ++ticks;
-}
-
-#endif
-
-/** @addtogroup STM32F4xx_HAL_Examples
-  * @{
-  */
-
-/** @addtogroup Templates
-  * @{
-  */
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 char text[2][20+1];
+
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
-static void Error_Handler(void);
+static void Error_Handler(int fallo);
 
 /* Private functions ---------------------------------------------------------*/
 /**
@@ -83,33 +76,29 @@ int main(void)
              handled in milliseconds basis.
        - Low Level Initialization
      */
-  HAL_Init();
+  if (HAL_Init() != HAL_OK)
+		Error_Handler(0);
 
-  /* Configure the system clock to 168 MHz */
+  /* Configure the system clock to 180 MHz */
   SystemClock_Config();
   SystemCoreClockUpdate();
 
-  /* Add your application code here
-     */
+	/*Inicializaciñon del Delay*/
+	Init_Delay(180,4);
+  /*Inicialización de los pines A0, nCs y Reset de la pantalla LCD*/
 	GPIO_INIT();
-	LCD_reset();
-	//pixel(5,7,1);
+	/*Inicialización de la pantalla LCD*/
+	if (LCD_reset() != HAL_OK)
+		Error_Handler(4);
 	
-	/*sprintf (text[0], "FUNCIONA");
-  sprintf (text[1], "POR FIN");
-	actualizar(text);*/
-	pant_neg();
+	/*Texto a escribir por pantalla*/
+	sprintf (text[0], "Purueba de texto");
+  sprintf (text[1], "Satisfactoria");
+	/*Envío del texto a la pantalla*/
+	actualizar(text);
+	/*Pueba del funcionamiento de todos los pixeles*/
+	//pant_neg();
 
-#ifdef RTE_CMSIS_RTOS2
-  /* Initialize CMSIS-RTOS2 */
-  osKernelInitialize ();
-
-  /* Create thread functions that start executing, 
-  Example: osThreadNew(app_main, NULL, NULL); */
-
-  /* Start thread execution */
-  osKernelStart();
-#endif
 
   /* Infinite loop */
   while (1)
@@ -118,19 +107,21 @@ int main(void)
 }
 
 /**
-  * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
-  *            System Clock source            = PLL (HSE)
-  *            SYSCLK(Hz)                     = 25000000
-  *            HCLK(Hz)                       = 25000000
+  * @brief  Función de configuración del reloj del sistema en el que se utiliza
+	*					como fuente de reloj del sistema el PLL con el HSI como fuente de 
+	*					reloj. Se configura una frecuencia del sistema de 180 MHz.
+  *         Se configuran los paramteros de la siguiente manera: 
+  *            System Clock source            = PLL (HSI)
+  *            SYSCLK(Hz)                     = 180000000
+  *            HCLK(Hz)                       = 180000000
   *            AHB Prescaler                  = 1
-  *            APB1 Prescaler                 = 1
-  *            APB2 Prescaler                 = 1
-  *            HSE Frequency(Hz)              = 8000000
-  *            PLL_M                          = 12
-  *            PLL_N                          = 72
-  *            PLL_P                          = 6
-  *            PLL_Q                          = 7
+  *            APB1 Prescaler                 = 4
+  *            APB2 Prescaler                 = 2
+  *            HSI Frequency(Hz)              = 16000000
+  *            PLL_M                          = 8
+  *            PLL_N                          = 180
+  *            PLL_P                          = 2
+  *            PLL_Q                          = 4
   *            VDD(V)                         = 3.3
   *            Main regulator output voltage  = Scale1 mode
   *            Flash Latency(WS)              = 5
@@ -138,51 +129,57 @@ int main(void)
   * @retval None
   */
 static void SystemClock_Config(void)
-{
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  RCC_OscInitTypeDef RCC_OscInitStruct;
+{ 
+	RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /* Enable Power Control clock */
+  /** Configure the main internal regulator output voltage
+  */
   __HAL_RCC_PWR_CLK_ENABLE();
-
-  /* The voltage scaling allows optimizing the power consumption when the device is 
-     clocked below the maximum system frequency, to update the voltage scaling value 
-     regarding system frequency refer to product datasheet.  */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
-  /* Enable HSE Oscillator and activate PLL with HSE as source */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+	
+  /** Se configura el HSI como fuente de reloj del PLL y se configuran
+	* 	los parametros del PLL para ajusta la frecuencia a 180 MHz con una
+	* 	frecuencia del HSI de 16 MHZ (por defecto).
+	* 	SYSCLK =[(16MHz(frecuencia HSI)/8(PLLM))*180 (PLLN)]/2 (PLLP) = 180 MHz
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 12;
-  RCC_OscInitStruct.PLL.PLLN = 72;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV6;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
-  if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 180;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-    /* Initialization Error */
-    Error_Handler();
+    Error_Handler(1);
   }
-
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
-     clocks dividers */
-  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
+  /** Se activa el modo de Over Drive para poder alcanzar los 180 MHz
+	* 	como frecuencia del sistema
+  */
+  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
+  {
+    Error_Handler(1);
+  }
+  /** Se selecciona el PLL como fuente de reloj del sistema y se configuran los parametros
+	*		para configurar el HCLK, PCLK1 y PCLK2. La frecuencia máxima del HCLK es 180 MHZ, la 
+	*		frecuencia máxima del PCLK1 es de 45 MHZ y la frecuencia máxima del PCLK2 es de 90 MHz
+	*		HCLK = SYSCK/AHB = 180 MHz / 1 = 180 MHz
+	*		PCLK1 = HCLK/APB1 = 180 MHz / 4 = 45 MHZ
+	*		PCLK2 = HCLK/APB2 = 180 MHz / 2 = 90 MHZ
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;  
-  if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
-  {
-    /* Initialization Error */
-    Error_Handler();
-  }
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  /* STM32F405x/407x/415x/417x Revision Z devices: prefetch is supported */
-  if (HAL_GetREVID() == 0x1001)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
   {
-    /* Enable the Flash prefetch */
-    __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
+    Error_Handler(1);
   }
 }
 
@@ -191,42 +188,25 @@ static void SystemClock_Config(void)
   * @param  None
   * @retval None
   */
-static void Error_Handler(void)
+static void Error_Handler(int fallo)
 {
-  /* User may add here some code to deal with this error */
-  while(1)
+	char buf[100];
+  
+	if(fallo == 0)
+		/* Mensaje si se ha producido un error en la inicializacón de la librería HAL*/
+		printf(buf,"\r Se ha producido un error al inicializar la librería HAL\n");
+	else if (fallo == 1)
+		/* Mensaje si se ha producido un error en la inicializacón del reloj del sistema*/
+		printf(buf,"\r Se ha producido un error al inicializar el reloj del sistema\n");
+	else if (fallo == 4)
+		/* Mensaje si se ha producido un error en la inicializacón de la pantalla*/
+		printf(buf,"\r Se ha producido un error al inicializar la pantalla LCD\n");
+	
+	while(1)
   {
   }
 }
 
-#ifdef  USE_FULL_ASSERT
 
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-  /* Infinite loop */
-  while (1)
-  {
-  }
-}
-
-#endif
-
-/**
-  * @}
-  */ 
-
-/**
-  * @}
-  */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

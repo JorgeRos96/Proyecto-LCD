@@ -90,6 +90,26 @@ void HAL_MspDeInit(void)
    */
 }
 /**
+* @brief TIM_Base MSP Initialization
+* This function configures the hardware resources used in this example
+* @param htim_base: TIM_Base handle pointer
+* @retval None
+*/
+void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+{
+	 GPIO_InitTypeDef GPIO_InitStruct = {0};
+  
+	if(htim_base->Instance==TIM6)
+  {
+    /* Peripheral clock enable */
+    __HAL_RCC_TIM6_CLK_ENABLE();
+
+  }
+	
+
+}
+
+/**
 * @brief SPI MSP Initialization
 * This function configures the hardware resources used in this example
 * @param hspi: SPI handle pointer
