@@ -46,6 +46,7 @@
 #include "main.h"
 #include "LCD.h"
 #include "Delay.h"
+#include "Watchdog.h"
 
 #ifdef _RTE_
 #include "RTE_Components.h"             // Component selection
@@ -66,7 +67,10 @@ static void Error_Handler(int fallo);
   */
 int main(void)
 {
-
+	/*Inicialización del IWDG*/
+	if (init_Watchdog() != 0)
+			Error_Handler(5);
+	
   /* STM32F4xx HAL library initialization:
        - Configure the Flash prefetch, Flash preread and Buffer caches
        - Systick timer is configured by default as source of time base, but user 
@@ -92,17 +96,18 @@ int main(void)
 		Error_Handler(4);
 	
 	/*Texto a escribir por pantalla*/
-	sprintf (text[0], "Purueba de texto");
-  sprintf (text[1], "Satisfactoria");
+//	sprintf (text[0], "Prueba de texto");
+//  sprintf (text[1], "Satisfactoria");
 	/*Envío del texto a la pantalla*/
 	actualizar(text);
 	/*Pueba del funcionamiento de todos los pixeles*/
-	//pant_neg();
+	pant_neg();
 
 
   /* Infinite loop */
   while (1)
   {
+		reset_Watchdog();
   }
 }
 
@@ -201,7 +206,10 @@ static void Error_Handler(int fallo)
 	else if (fallo == 4)
 		/* Mensaje si se ha producido un error en la inicializacón de la pantalla*/
 		printf(buf,"\r Se ha producido un error al inicializar la pantalla LCD\n");
-	
+	else if (fallo == 5)
+		/* Mensaje si se ha producido un error en la inicialización del Watchdog*/
+		printf(buf,"\r Se ha producido un error al inicializar el Watchdog\n");
+ 
 	while(1)
   {
   }
